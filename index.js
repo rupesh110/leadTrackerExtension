@@ -1,3 +1,5 @@
+
+
 let myLeads = []
 const inputEl = document.getElementById("input-el")
 const inputBtn = document.getElementById("input-btn")
@@ -19,19 +21,42 @@ tabBtn.addEventListener("click", function(){
     })
 })
 
+function imgData(arr){
+    
+    `<img src= ${arr.img})'>`
+}
 function render(leads) {
     let listItems = ""
+    //let img = <img src="./delete.png">
     for (let i = 0; i < leads.length; i++) {
-        listItems += `
-            <li>
-                <a target='_blank' href='${leads[i]}'>
-                    ${leads[i]}
-                </a>
-            </li>
-        `
+         
+                listItems += `
+                
+                    <li className="displayText">
+            
+                        <a target='_blank' href='${leads[i]}'>
+                            ${leads[i]}
+                        </a> 
+
+                     <img src="./delete.png" class="delete-trash">
+                    </li>
+                `
+               
+           
     }
     ulEl.innerHTML = listItems
 }
+
+ulEl.addEventListener("click", function(event) {
+    if (event.target.classList.contains("delete-trash")) {
+        const index = event.target.dataset.index
+        console.log(index)
+        myLeads.splice(index, 1)
+        localStorage.setItem("myLeads", JSON.stringify(myLeads))
+        render(myLeads)
+    }
+})
+
 
 deleteBtn.addEventListener("dblclick", function() {
     localStorage.clear()
@@ -40,8 +65,14 @@ deleteBtn.addEventListener("dblclick", function() {
 })
 
 inputBtn.addEventListener("click", function() {
+    let newData = {
+        img: "./delete.png",
+        inputValue: inputEl.value.length > 0 ? inputEl.value: inputValue,
+    }
     myLeads.push(inputEl.value)
     inputEl.value = ""
     localStorage.setItem("myLeads", JSON.stringify(myLeads) )
     render(myLeads)
+    console.log(myLeads)
 })
+

@@ -30,12 +30,28 @@ ul{
      list-style-type: none;    
      margin-top: 20px;
      padding-left: 0;
+     
 }
 
 li{
     margin-top: 5px;
+  
 }
 a{
-  color: #5f9341;  
+    color: #5f9341; 
+    font-size: 20px;
+   
+}
+img{
+    width:20px ;
+    height:20px; 
+    padding-left: 10px;
+    padding-top: 5px;
+ 
 }
 
+#delete-trash{
+    background: red;
+    margin-left: 50px;
+    border-radius: 15px;
+}
